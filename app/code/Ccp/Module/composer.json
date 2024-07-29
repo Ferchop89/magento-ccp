@@ -1,0 +1,26 @@
+{
+  "name": "ccp/module-module",
+  "version": "1.0.0",
+  "description": "The Ccp_Module module is a custom module developed for Adobe Commerce (Magento 2) that provides basic CRUD (Create, Read, Update, Delete) functionalities for a custom entity called Ccp_Product. This module includes an administration interface to manage custom products from the Magento backend.",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "authors": [
+    {
+      "name": "Fernando Pacheco Estrada",
+      "email": "fechopacheco@gmail.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Ccp\\Module\\": ""
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="ccp_product" resource="default" engine="innodb" comment="CCP Product Table">
+        <column xsi:type="int" name="product_id" nullable="false" identity="true" unsigned="true" comment="Product ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Product Name"/>
+        <column xsi:type="varchar" name="sku" nullable="false" length="255" comment="Product SKU"/>
+        <column xsi:type="decimal" name="price" nullable="false" precision="12" scale="4" comment="Product Price"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Product Description"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="product_id"/>
+        </constraint>
+    </table>
+</schema>

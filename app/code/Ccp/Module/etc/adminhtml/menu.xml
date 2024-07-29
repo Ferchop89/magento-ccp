@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Menu/etc/menu.xsd">
+    <menu>
+        <add id="Ccp_Module::product" title="CCP Products" module="Ccp_Module" sortOrder="10" parent="Magento_Backend::content" action="ccp_module/product/index" resource="Ccp_Module::product"/>
+    </menu>
+</config>

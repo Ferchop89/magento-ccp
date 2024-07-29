@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="ccp_module" frontName="ccp_module">
+            <module name="Ccp_Module" before="Magento_Backend"/>
+        </route>
+    </router>
+</config>

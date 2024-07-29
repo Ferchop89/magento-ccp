@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/UIComponent/etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">ccp_module_product_form.ccp_module_product_form_data_source</item>
+            <item name="deps" xsi:type="string">ccp_module_product_form.ccp_module_product_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Product Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="submit_url" xsi:type="url" path="ccp_module/product/save"/>
+    </argument>
+    <dataSource name="ccp_module_product_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Ccp\Module\Ui\DataProvider\Product</argument>
+            <argument name="name" xsi:type="string">ccp_module_product_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">product_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="js_config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">General</label>
+        </settings>
+        <field name="product_id">
+            <arguments>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">product</item>
+                        <item name="label" xsi:type="string" translate="true">ID</item>
+                        <item name="dataScope" xsi:type="string">product_id</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="disabled" xsi:type="boolean">true</item>
+                    </item>
+                </argument>
+            </arguments>
+        </field>
+        <field name="name">
+            <arguments>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">product</item>
+                        <item name="label" xsi:type="string" translate="true">Name</item>
+                        <item name="dataScope" xsi:type="string">name</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </field>
+        <field name="sku">
+            <arguments>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">product</item>
+                        <item name="label" xsi:type="string" translate="true">SKU</item>
+                        <item name="dataScope" xsi:type="string">sku</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </field>
+        <field name="price">
+            <arguments>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="source" xsi:type="string">product</item>
+                        <item name="label" xsi:type="string" translate="true">Price</item>
+                        <item name="dataScope" xsi:type="string">price</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </field>
+        <field name="description">
+            <arguments>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">textarea</item>
+                        <item name="source" xsi:type="string">product</item>
+                        <item name="label" xsi:type="string" translate="true">Description</item>
+                        <item name="dataScope" xsi:type="string">description</item>
+                    </item>
+                </argument>
+            </arguments>
+        </field>
+    </fieldset>
+    <settings>
+        <buttons>
+            <button name="save">
+                <settings>
+                    <label translate="true">Save</label>
+                    <class>primary</class>
+                </settings>
+            </button>
+            <button name="delete">
+                <settings>
+                    <label translate="true">Delete</label>
+                </settings>
+            </button>
+            <button name="reset">
+                <settings>
+                    <label translate="true">Reset</label>
+                </settings>
+            </button>
+        </buttons>
+    </settings>
+</form>
