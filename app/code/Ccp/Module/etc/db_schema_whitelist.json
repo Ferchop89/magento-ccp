@@ -1,0 +1,18 @@
+{
+    "ccp_product": {
+        "column": {
+            "product_id": true,
+            "name": true,
+            "sku": true,
+            "price": true,
+            "description": true
+        },
+        "index": {
+            "CCP_PRODUCT_SKU": true,
+            "CCP_PRODUCT_NAME": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

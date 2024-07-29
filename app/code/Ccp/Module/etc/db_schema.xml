@@ -9,5 +9,11 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="product_id"/>
         </constraint>
+        <index referenceId="CCP_MODULE_SKU_IDX">
+            <column name="sku"/>
+        </index>
+        <index referenceId="CCP_MODULE_NAME_IDX">
+            <column name="name"/>
+        </index>
     </table>
 </schema>

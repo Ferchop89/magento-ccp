@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        user: "magento"
+        uid: 1000
+    container_name: magento-web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./web/magento:/var/www/html
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+      - ./web/log/php:/var/log/php-fpm
+      - ./web/log/apache:/var/log/apache2
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_ROOT_PASSWORD=magento
+      - MYSQL_DATABASE=magento
+      - MYSQL_USER=magento
+      - MYSQL_PASSWORD=magento
+      - http_proxy=
+      - https_proxy=
+
+  db:
+    image: mariadb:10.6
+    container_name: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=magento
+      - MYSQL_DATABASE=magento
+      - MYSQL_USER=magento
+      - MYSQL_PASSWORD=magento
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/db-data:/var/lib/mysql
+      - ./mysql/dumps:/dumps
+      - ./mysql/log/mysql:/var/log/mysql/
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - http_proxy=
+      - https_proxy=
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=Mexico01
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+    expose:
+      - "9200"
+    volumes:
+      - ./elasticsearch/es-data:/usr/share/elasticsearch/data
+      - ./elasticsearch/log/elastic:/var/log/elasticsearch
+      - ./elasticsearch/log/elastic:/usr/share/elasticsearch/logs
+volumes:
+  db-data:
+  es-data:
+

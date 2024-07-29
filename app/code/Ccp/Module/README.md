@@ -34,7 +34,7 @@ Este módulo personalizado de Magento 2 proporciona funcionalidad CRUD para una 
 
 ## Funcionalidad
 
-- **CRUD de Cpp_Product:** Proporciona operaciones básicas de CRUD para la entidad `Ccp_Product` con campos como `product_id`, `name`, `sku`, `price`, y `description`.
+- **CRUD de Cpp_Module:** Proporciona operaciones básicas de CRUD para la entidad `Ccp_Product` con campos como `product_id`, `name`, `sku`, `price`, y `description`.
 - **Grid y Formulario de Edición en Backend:** Incluye un grid en el backend para listar todos los `Ccp_Product` y un formulario de edición para agregar y editar `Ccp_Product`.
 - **Integración con API Externa:** Sincroniza los datos de `Ccp_Product` con una API externa.
 - **Cron Job:** Un cron job que se ejecuta cada hora para actualizar la información de `Ccp_Product` desde la API externa.
