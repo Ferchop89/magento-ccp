@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Menu/etc/menu.xsd">
     <menu>
-        <add id="Ccp_Module::product" title="CCP Products" module="Ccp_Module" sortOrder="10" parent="Magento_Backend::content" action="ccp_module/product/index" resource="Ccp_Module::product"/>
+        <add id="Ccp_Module::top_menu" title="CCP Module" module="Ccp_Module" sortOrder="100" resource="Ccp_Module::main_menu"/>
+        <add id="Ccp_Module::product" title="Manage Products" module="Ccp_Module" sortOrder="10" parent="Ccp_Module::top_menu" action="ccp_module/product/index" resource="Ccp_Module::product"/>
     </menu>
 </config>

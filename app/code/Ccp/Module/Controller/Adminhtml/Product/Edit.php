@@ -6,6 +6,9 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Registry;
+use Magento\Framework\Controller\Result\RedirectFactory;
+use Magento\Framework\Message\ManagerInterface;
+use Ccp\Module\Model\ProductFactory;
 
 /**
  * Class Edit
@@ -25,6 +28,21 @@ class Edit extends Action
      */
     protected $coreRegistry;
 
+    /**
+     * @var ProductFactory
+     */
+    protected $productFactory;
+
+    /**
+     * @var RedirectFactory
+     */
+    protected $resultRedirectFactory;
+
+    /**
+     * @var ManagerInterface
+     */
+    protected $messageManager;
+
     const ADMIN_RESOURCE = 'Ccp_Module::product';
 
     /**
@@ -33,21 +51,30 @@ class Edit extends Action
      * @param Context $context
      * @param PageFactory $resultPageFactory
      * @param Registry $coreRegistry
+     * @param ProductFactory $productFactory
+     * @param RedirectFactory $resultRedirectFactory
+     * @param ManagerInterface $messageManager
      */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
-        Registry $coreRegistry
+        Registry $coreRegistry,
+        ProductFactory $productFactory,
+        RedirectFactory $resultRedirectFactory,
+        ManagerInterface $messageManager
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->coreRegistry = $coreRegistry;
+        $this->productFactory = $productFactory;
+        $this->resultRedirectFactory = $resultRedirectFactory;
+        $this->messageManager = $messageManager;
     }
 
     /**
      * Execute the action
      *
-     * @return \Magento\Framework\View\Result\Page
+     * @return \Magento\Framework\View\Result\Page|\Magento\Framework\Controller\Result\Redirect
      */
     public function execute()
     {
@@ -55,15 +82,15 @@ class Edit extends Action
             return $this->_forward('noroute');
         }
 
-        $id = $this->getRequest()->getParam('id');
-        $model = $this->_objectManager->create(\Ccp\Module\Model\Product::class);
+        $id = $this->getRequest()->getParam('product_id');
+        $model = $this->productFactory->create();
 
         if ($id) {
             $model->load($id);
             if (!$model->getId()) {
-                $this->messageManager->addError(__('This product no longer exists.'));
-                $this->_redirect('*/*/');
-                return;
+                $this->messageManager->addErrorMessage(__('This product no longer exists.'));
+                $resultRedirect = $this->resultRedirectFactory->create();
+                return $resultRedirect->setPath('*/*/');
             }
         }
 

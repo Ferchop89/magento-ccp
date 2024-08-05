@@ -3,7 +3,9 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Ccp_Module::product" title="Ccp Products" sortOrder="10" />
+                <resource id="Ccp_Module::main_menu" title="CCP Module" sortOrder="100">
+                    <resource id="Ccp_Module::product" title="Ccp Products" sortOrder="10"/>
+                </resource>
             </resource>
         </resources>
     </acl>

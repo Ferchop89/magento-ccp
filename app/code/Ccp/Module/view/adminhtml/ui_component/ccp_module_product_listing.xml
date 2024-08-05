@@ -6,7 +6,7 @@
             <item name="provider" xsi:type="string">ccp_module_product_listing.ccp_module_product_listing_data_source</item>
             <item name="deps" xsi:type="string">ccp_module_product_listing.ccp_module_product_listing_data_source</item>
         </item>
-        <item name="spinner" xsi:type="string">ccp_module_product_columns</item>
+        <item name="spinner" xsi:type="string">spinner_columns</item>
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
@@ -16,9 +16,9 @@
             </item>
         </item>
     </argument>
-    <dataSource name="ccp_module_product_listing_data_source">
+    <dataSource name="nameOfDataSource">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Ccp\Module\Ui\DataProvider\Product</argument>
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
             <argument name="name" xsi:type="string">ccp_module_product_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">product_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
@@ -47,9 +47,9 @@
         <massaction name="listing_massaction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">ccp_module_product_listing.ccp_module_product_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">ccp_module_product_listing.ccp_module_product_listing.spinner_columns.ids</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
-                    <item name="indexField" xsi:type="string">product_id</item>
+                    <item name="indexField" xsi:type="string">id</item>
                 </item>
             </argument>
             <action name="delete">
@@ -67,7 +67,7 @@
             </action>
         </massaction>
     </listingToolbar>
-    <columns name="ccp_module_product_columns">
+    <columns name="spinner_columns">
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -76,21 +76,12 @@
                 </item>
             </argument>
         </selectionsColumn>
-        <column name="product_id">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">ID</item>
-                    <item name="sortOrder" xsi:type="number">1</item>
-                </item>
-            </argument>
-        </column>
         <column name="name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Name</item>
-                    <item name="sortOrder" xsi:type="number">2</item>
+                    <item name="label" xsi:type="string" translate="true">Nombre</item>
+                    <item name="sortOrder" xsi:type="number">1</item>
                 </item>
             </argument>
         </column>
@@ -99,7 +90,7 @@
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">SKU</item>
-                    <item name="sortOrder" xsi:type="number">3</item>
+                    <item name="sortOrder" xsi:type="number">2</item>
                 </item>
             </argument>
         </column>
@@ -107,8 +98,8 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Price</item>
-                    <item name="sortOrder" xsi:type="number">4</item>
+                    <item name="label" xsi:type="string" translate="true">Precio</item>
+                    <item name="sortOrder" xsi:type="number">3</item>
                 </item>
             </argument>
         </column>
@@ -116,40 +107,19 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Description</item>
-                    <item name="sortOrder" xsi:type="number">5</item>
+                    <item name="label" xsi:type="string" translate="true">Descripción</item>
+                    <item name="sortOrder" xsi:type="number">4</item>
                 </item>
             </argument>
         </column>
-        <actionsColumn name="actions">
+        <actionsColumn name="actions" class="Ccp\Module\Ui\Component\Listing\Column\CcpActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
                     <item name="indexField" xsi:type="string">product_id</item>
                 </item>
             </argument>
-            <action name="edit">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="urlPath" xsi:type="string">ccp_module/product/edit</item>
-                        <item name="label" xsi:type="string" translate="true">Edit</item>
-                        <item name="param" xsi:type="array">
-                            <item name="id" xsi:type="string">product_id</item>
-                        </item>
-                    </item>
-                </argument>
-            </action>
-            <action name="delete">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="urlPath" xsi:type="string">ccp_module/product/delete</item>
-                        <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="param" xsi:type="array">
-                            <item name="id" xsi:type="string">product_id</item>
-                        </item>
-                    </item>
-                </argument>
-            </action>
         </actionsColumn>
     </columns>
 </listing>

@@ -5,6 +5,7 @@ namespace Ccp\Module\Block\Adminhtml\Product\Edit\Buttons;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Registry;
 
 /**
  * Class Delete
@@ -26,15 +27,25 @@ class Delete implements ButtonProviderInterface
     protected $request;
 
     /**
+     * @var Registry
+     */
+    protected $coreRegistry;
+
+    /**
      * Constructor
      *
      * @param UrlInterface $urlBuilder
      * @param RequestInterface $request
+     * @param Registry $coreRegistry
      */
-    public function __construct(UrlInterface $urlBuilder, RequestInterface $request)
-    {
+    public function __construct(
+        UrlInterface $urlBuilder,
+        RequestInterface $request,
+        Registry $coreRegistry
+    ) {
         $this->urlBuilder = $urlBuilder;
         $this->request = $request;
+        $this->coreRegistry = $coreRegistry;
     }
 
     /**
@@ -61,7 +72,7 @@ class Delete implements ButtonProviderInterface
      */
     private function getDeleteUrl()
     {
-        return $this->getUrl('*/*/delete', ['id' => $this->getProductId()]);
+        return $this->getUrl('*/*/delete', ['product_id' => $this->getProductId()]);
     }
 
     /**
@@ -83,6 +94,7 @@ class Delete implements ButtonProviderInterface
      */
     private function getProductId()
     {
-        return (int)$this->request->getParam('id');
+        $product = $this->coreRegistry->registry('product');
+        return $product ? $product->getId() : null;
     }
 }

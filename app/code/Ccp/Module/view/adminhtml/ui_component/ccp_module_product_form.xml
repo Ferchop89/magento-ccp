@@ -24,13 +24,13 @@
     </argument>
     <dataSource name="ccp_module_product_form_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Ccp\Module\Ui\DataProvider\Product</argument>
+            <argument name="class" xsi:type="string">Ccp\Module\Model\Product\DataProvider</argument>
             <argument name="name" xsi:type="string">ccp_module_product_form_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">product_id</argument>
-            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">product_id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="submit_url" xsi:type="url" path="ccp_module/product/save"/>
+                    <item name="submit_url" xsi:type="url" path="*/*/save"/>
                 </item>
             </argument>
         </argument>
@@ -40,10 +40,10 @@
             </item>
         </argument>
     </dataSource>
-    <fieldset name="general">
+    <fieldset name="product">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string" translate="true">General</item>
+                <item name="label" xsi:type="string" translate="true">Product Data</item>
             </item>
         </argument>
         <field name="product_id">

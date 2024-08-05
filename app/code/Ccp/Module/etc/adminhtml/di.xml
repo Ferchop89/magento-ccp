@@ -3,14 +3,26 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="ccp_module_product_listing_data_source" xsi:type="string">Ccp\Module\Model\ResourceModel\Product\Collection</item>
+                <item name="ccp_module_product_listing_data_source" xsi:type="string">Ccp\Module\Model\ResourceModel\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
+    <virtualType name="Ccp\Module\Model\ResourceModel\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ccp_product</argument>
+            <argument name="resourceModel"
+                      xsi:type="string">Ccp\Module\Model\ResourceModel\Product</argument>
+        </arguments>
+    </virtualType>
     <type name="Ccp\Module\Model\ResourceModel\Product\Collection">
         <arguments>
             <argument name="aggregations" xsi:type="object">Ccp\Module\Model\Search\Aggregation</argument>
         </arguments>
     </type>
+    <type name="Ccp\Module\Ui\DataProvider\Product">
+        <arguments>
+            <argument name="collection" xsi:type="object">Ccp\Module\Model\ResourceModel\Product\Collection</argument>
+        </arguments>
+    </type>
 </config>
-

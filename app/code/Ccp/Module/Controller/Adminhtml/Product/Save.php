@@ -9,6 +9,8 @@ use Ccp\Module\Model\ProductFactory;
 use Magento\Backend\App\Action;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Registry;
+use Magento\Framework\Controller\Result\RedirectFactory;
+use Magento\Framework\Message\ManagerInterface;
 
 /**
  * Class Save
@@ -19,6 +21,8 @@ use Magento\Framework\Registry;
  */
 class Save extends Action
 {
+    const ADMIN_RESOURCE = 'Ccp_Module::product';
+
     /**
      * @var PageFactory
      */
@@ -40,6 +44,16 @@ class Save extends Action
     protected $coreRegistry;
 
     /**
+     * @var RedirectFactory
+     */
+    protected $resultRedirectFactory;
+
+    /**
+     * @var ManagerInterface
+     */
+    protected $messageManager;
+
+    /**
      * Save constructor.
      *
      * @param Context $context
@@ -47,19 +61,25 @@ class Save extends Action
      * @param JsonFactory $resultJsonFactory
      * @param ProductFactory $productFactory
      * @param Registry $coreRegistry
+     * @param RedirectFactory $resultRedirectFactory
+     * @param ManagerInterface $messageManager
      */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
         JsonFactory $resultJsonFactory,
         ProductFactory $productFactory,
-        Registry $coreRegistry
+        Registry $coreRegistry,
+        RedirectFactory $resultRedirectFactory,
+        ManagerInterface $messageManager
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->resultJsonFactory = $resultJsonFactory;
         $this->productFactory = $productFactory;
         $this->coreRegistry = $coreRegistry;
+        $this->resultRedirectFactory = $resultRedirectFactory;
+        $this->messageManager = $messageManager;
     }
 
     /**
@@ -88,7 +108,7 @@ class Save extends Action
                 }
             }
 
-            $product->setData($data['general']);
+            $product->setData($data['product']);
 
             try {
                 $product->save();
